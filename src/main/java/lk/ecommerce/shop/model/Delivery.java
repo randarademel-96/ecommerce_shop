@@ -21,6 +21,9 @@ public class Delivery {
     @Enumerated(EnumType.STRING)
     private DeliveryStatus deliveryStatus;
 
+    @OneToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
 
 
 }

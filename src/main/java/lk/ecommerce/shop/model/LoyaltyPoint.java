@@ -16,7 +16,9 @@ public class LoyaltyPoint {
 
     private BigDecimal pointsEarned;
 
-
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
 }
 

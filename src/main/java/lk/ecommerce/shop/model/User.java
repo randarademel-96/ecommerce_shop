@@ -25,7 +25,8 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
 
-
+    @OneToOne(mappedBy = "user")
+    private LoyaltyPoint loyaltyPoint;
 
 
 

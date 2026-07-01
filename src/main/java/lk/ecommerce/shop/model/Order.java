@@ -24,5 +24,9 @@ public class Order {
     private BigDecimal totalAmount;
 
 
+    @OneToOne(mappedBy = "order")
+    private Delivery delivery;
+
+
 
 }
