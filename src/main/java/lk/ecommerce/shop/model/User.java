@@ -28,6 +28,9 @@ public class User {
     @OneToOne(mappedBy = "user")
     private LoyaltyPoint loyaltyPoint;
 
+    @OneToMany(mappedBy = "user")
+    private List<Order> orders;
+
 
 
 }

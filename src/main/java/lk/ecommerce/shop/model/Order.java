@@ -27,6 +27,14 @@ public class Order {
     @OneToOne(mappedBy = "order")
     private Delivery delivery;
 
+    @OneToMany(mappedBy = "order")
+    private List<OrderItem> orderItems;
 
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private User user;
+
+    @OneToOne(mappedBy = "order")
+    private Payment payment;
 
 }
