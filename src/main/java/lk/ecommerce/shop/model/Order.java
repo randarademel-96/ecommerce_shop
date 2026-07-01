@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Data
@@ -21,4 +22,7 @@ public class Order {
     private OrderStatus orderStatus;
 
     private BigDecimal totalAmount;
+
+
+
 }

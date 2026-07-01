@@ -3,10 +3,12 @@ package lk.ecommerce.shop.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Entity
 @Data
-@Table(name = "customer")
-public class Customer {
+@Table(name = "user")
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,5 +21,12 @@ public class Customer {
 
     private String address;
     private Integer phoneNo;
+
+    @Enumerated(EnumType.STRING)
+    private UserRole userRole;
+
+
+
+
 
 }

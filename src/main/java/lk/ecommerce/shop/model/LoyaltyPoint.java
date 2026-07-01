@@ -15,4 +15,9 @@ public class LoyaltyPoint {
     private Long id;
 
     private BigDecimal pointsEarned;
+
+
+
 }
+
+
