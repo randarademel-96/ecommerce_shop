@@ -1,6 +1,27 @@
 package lk.ecommerce.shop.service.impl;
 
+import lk.ecommerce.shop.controller.request.BrandRequest;
+import lk.ecommerce.shop.model.Brand;
+import lk.ecommerce.shop.repository.BrandRepository;
 import lk.ecommerce.shop.service.BrandService;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
+
+@Service
+@AllArgsConstructor
 public class BrandServiceImpl implements BrandService {
+
+    private final BrandRepository brandRepository;
+
+    @Override
+    public void create(BrandRequest brandRequest) {
+
+        Brand brand = new Brand();
+        brand.setName(brandRequest.getName());
+        brand.setDescription(brandRequest.getDescription());
+
+        brandRepository.save(brand);
+
+    }
 }
