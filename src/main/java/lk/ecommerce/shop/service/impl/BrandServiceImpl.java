@@ -1,6 +1,7 @@
 package lk.ecommerce.shop.service.impl;
 
 import lk.ecommerce.shop.controller.request.BrandRequest;
+import lk.ecommerce.shop.controller.response.BrandResponse;
 import lk.ecommerce.shop.model.Brand;
 import lk.ecommerce.shop.repository.BrandRepository;
 import lk.ecommerce.shop.service.BrandService;
@@ -22,6 +23,13 @@ public class BrandServiceImpl implements BrandService {
         brand.setDescription(brandRequest.getDescription());
 
         brandRepository.save(brand);
+
+    }
+
+    @Override
+    public Brand findById(Long id) {
+
+        return brandRepository.findById(id).orElseThrow(()-> new RuntimeException("Brand Id does not exist"));
 
     }
 }
