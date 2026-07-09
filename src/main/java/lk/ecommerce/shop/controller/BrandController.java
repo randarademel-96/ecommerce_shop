@@ -57,4 +57,12 @@ public class BrandController {
         }
         return ResponseEntity.ok(brandResponses);
     }
+
+    @PutMapping(value = "/brands/{brand-id}", headers = "x-api-version")
+    public ResponseEntity<Void> update(@PathVariable("brand-id")Long id, @Valid @RequestBody BrandRequest brandRequest){
+
+        brandService.update(id, brandRequest);
+
+        return ResponseEntity.ok().build();
+    }
 }

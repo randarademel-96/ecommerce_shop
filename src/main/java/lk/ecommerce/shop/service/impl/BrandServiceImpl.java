@@ -40,4 +40,16 @@ public class BrandServiceImpl implements BrandService {
 
         return brandRepository.findAll();
     }
+
+    @Override
+    public void update(Long id, BrandRequest brandRequest) {
+
+        Brand existingBrand = brandRepository.findById(id).orElseThrow(()-> new RuntimeException("Brand Id does not exist"));
+
+        existingBrand.setName(brandRequest.getName());
+        existingBrand.setDescription(brandRequest.getDescription());
+
+        brandRepository.save(existingBrand);
+
+    }
 }
