@@ -8,6 +8,8 @@ import lk.ecommerce.shop.service.BrandService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 @AllArgsConstructor
@@ -31,5 +33,11 @@ public class BrandServiceImpl implements BrandService {
 
         return brandRepository.findById(id).orElseThrow(()-> new RuntimeException("Brand Id does not exist"));
 
+    }
+
+    @Override
+    public List<Brand> findAll() {
+
+        return brandRepository.findAll();
     }
 }

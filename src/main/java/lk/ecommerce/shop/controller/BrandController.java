@@ -10,6 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @AllArgsConstructor
 public class BrandController {
@@ -23,7 +26,7 @@ public class BrandController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @GetMapping(value = "brands/{brand-id}", headers = "x-api-version=v1")
+    @GetMapping(value = "/brands/{brand-id}", headers = "x-api-version=v1")
     public ResponseEntity<BrandResponse> findById(@PathVariable("brand-id")Long id){
         Brand brand = brandService.findById(id);
 
@@ -34,5 +37,24 @@ public class BrandController {
                 .build();
         return ResponseEntity.ok(brandResponse);
 
+    }
+
+    @GetMapping(value = "/brands", headers = "x-api-version")
+    public ResponseEntity<List<BrandResponse>> findAll(){
+
+        List<Brand> brands = brandService.findAll();
+
+        List<BrandResponse> brandResponses = new ArrayList<>();
+
+        for(Brand brand: brands){
+
+            BrandResponse response = BrandResponse.builder()
+                    .id(brand.getId())
+                    .name(brand.getName())
+                    .description(brand.getDescription())
+                    .build();
+            brandResponses.add(response);
+        }
+        return ResponseEntity.ok(brandResponses);
     }
 }
