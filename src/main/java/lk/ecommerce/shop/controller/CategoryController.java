@@ -10,6 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @AllArgsConstructor
 public class CategoryController {
@@ -37,6 +40,27 @@ public class CategoryController {
                 .build();
 
         return ResponseEntity.ok(categoryResponse);
+    }
+
+    @GetMapping(value = "/categories", headers = "x-api-version=v1")
+    public ResponseEntity<List<CategoryResponse>> findAll(){
+
+        List<Category> categories = categoryService.findAll();
+
+        List<CategoryResponse> responses = new ArrayList<>();
+
+        for(Category category: categories){
+
+            CategoryResponse categoryResponse = CategoryResponse.builder()
+                    .id(category.getId())
+                    .name(category.getName())
+                    .description(category.getDescription())
+                    .build();
+            responses.add(categoryResponse);
+
+        }
+
+        return ResponseEntity.ok(responses);
     }
 
 }

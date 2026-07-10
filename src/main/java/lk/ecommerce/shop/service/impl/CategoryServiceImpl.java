@@ -7,12 +7,14 @@ import lk.ecommerce.shop.service.CategoryService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryRepository categoryRepository;
-    private final CategoryService categoryService;
+
 
     @Override
     public void create(CategoryRequest categoryRequest) {
@@ -30,5 +32,11 @@ public class CategoryServiceImpl implements CategoryService {
     public Category findById(Long id) {
 
         return categoryRepository.findById(id).orElseThrow(()-> new RuntimeException("Category Id does not exist"));
+    }
+
+    @Override
+    public List<Category> findAll() {
+
+        return categoryRepository.findAll();
     }
 }
