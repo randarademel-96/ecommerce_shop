@@ -52,4 +52,12 @@ public class BrandServiceImpl implements BrandService {
         brandRepository.save(existingBrand);
 
     }
+
+    @Override
+    public void delete(Long id) {
+
+        Brand brand = brandRepository.findById(id).orElseThrow(()-> new RuntimeException("Brand Id does not exist"));
+
+        brandRepository.delete(brand);
+    }
 }

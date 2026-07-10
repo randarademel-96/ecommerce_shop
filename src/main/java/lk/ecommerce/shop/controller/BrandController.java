@@ -65,4 +65,12 @@ public class BrandController {
 
         return ResponseEntity.ok().build();
     }
+
+    @DeleteMapping(value = "/brands/{brand-id}", headers = "x-api-version=v1")
+    public ResponseEntity<Void> delete(@PathVariable("brand-id")Long id){
+
+        brandService.delete(id);
+
+        return ResponseEntity.noContent().build();
+    }
 }
