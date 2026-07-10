@@ -16,6 +16,7 @@ public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository categoryRepository;
 
 
+
     @Override
     public void create(CategoryRequest categoryRequest) {
 
@@ -38,5 +39,16 @@ public class CategoryServiceImpl implements CategoryService {
     public List<Category> findAll() {
 
         return categoryRepository.findAll();
+    }
+
+    @Override
+    public void update(Long id, CategoryRequest categoryRequest) {
+
+        Category existingCategory = categoryRepository.findById(id).orElseThrow(()-> new RuntimeException("Category Id does not exist"));
+
+        existingCategory.setName(categoryRequest.getName());
+        existingCategory.setDescription(categoryRequest.getDescription());
+
+        categoryRepository.save(existingCategory);
     }
 }

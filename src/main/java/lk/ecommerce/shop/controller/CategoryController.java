@@ -63,4 +63,12 @@ public class CategoryController {
         return ResponseEntity.ok(responses);
     }
 
+    @PutMapping(value = "/categories/{category-id}", headers = "x-api-version=v1")
+    public ResponseEntity<Void> update(@PathVariable("category-id")Long id,@Valid @RequestBody CategoryRequest categoryRequest){
+
+        categoryService.update(id, categoryRequest);
+        return ResponseEntity.ok().build();
+
+    }
+
 }
