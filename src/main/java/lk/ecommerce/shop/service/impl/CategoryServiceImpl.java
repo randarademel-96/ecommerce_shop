@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryRepository categoryRepository;
+    private final CategoryService categoryService;
 
     @Override
     public void create(CategoryRequest categoryRequest) {
@@ -23,5 +24,11 @@ public class CategoryServiceImpl implements CategoryService {
         categoryRepository.save(category);
 
 
+    }
+
+    @Override
+    public Category findById(Long id) {
+
+        return categoryRepository.findById(id).orElseThrow(()-> new RuntimeException("Category Id does not exist"));
     }
 }
