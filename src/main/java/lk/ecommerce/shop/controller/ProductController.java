@@ -1,5 +1,6 @@
 package lk.ecommerce.shop.controller;
 
+import jakarta.validation.Valid;
 import lk.ecommerce.shop.controller.request.ProductRequest;
 import lk.ecommerce.shop.controller.response.ProductResponse;
 import lk.ecommerce.shop.model.Product;
@@ -20,7 +21,7 @@ public class ProductController {
     private final ProductService productService;
 
     @PostMapping(headers = "x-api-version=v1")
-    public ResponseEntity<Void> create(@RequestBody ProductRequest productRequest){
+    public ResponseEntity<Void> create(@Valid @RequestBody ProductRequest productRequest){
 
         productService.create(productRequest);
         return ResponseEntity.status(HttpStatus.CREATED).build();
@@ -47,6 +48,24 @@ public class ProductController {
             productResponses.add(response);
         }
         return ResponseEntity.ok(productResponses);
+    }
+
+    @GetMapping(value = "/{product-id}", headers = "x-api-version=v1")
+    public ResponseEntity<ProductResponse> getById(@Valid @PathVariable("product-id")Long id){
+
+        Product product = productService.getById(id);
+
+        ProductResponse response = ProductResponse.builder()
+                .id(product.getId())
+                .name(product.getName())
+                .description(product.getDescription())
+                .brandId(product.getBrand().getId())
+                .brandName(product.getBrand().getName())
+                .categoryId(product.getCategory().getId())
+                .categoryName(product.getCategory().getName())
+                .build();
+
+        return ResponseEntity.ok(response);
     }
 
 

@@ -41,4 +41,12 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> getAll() {
         return productRepository.findAll();
     }
+
+    @Override
+    public Product getById(Long id) {
+
+        return productRepository.findById(id).orElseThrow(()-> new RuntimeException("Product id not found"));
+
+
+    }
 }
