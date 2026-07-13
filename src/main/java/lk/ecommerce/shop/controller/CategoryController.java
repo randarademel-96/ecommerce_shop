@@ -71,4 +71,12 @@ public class CategoryController {
 
     }
 
+    @DeleteMapping(value = "categories/{category-id}", headers = "x-api-version=v1")
+    public ResponseEntity<Void> delete(@PathVariable("category-id")Long id){
+
+        categoryService.delete(id);
+
+        return ResponseEntity.noContent().build();
+    }
+
 }

@@ -51,4 +51,12 @@ public class CategoryServiceImpl implements CategoryService {
 
         categoryRepository.save(existingCategory);
     }
+
+    @Override
+    public void delete(Long id) {
+
+        Category category = categoryRepository.findById(id).orElseThrow(()-> new RuntimeException("Category id does not exist"));
+
+        categoryRepository.delete(category);
+    }
 }
