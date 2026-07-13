@@ -68,6 +68,14 @@ public class ProductController {
         return ResponseEntity.ok(response);
     }
 
+    @PutMapping(value = "/{product-id}", headers = "x-api-version=v1")
+    public ResponseEntity<Void> update(@PathVariable("product-id")Long id, @Valid @RequestBody ProductRequest productRequest){
+
+        productService.update(id, productRequest);
+
+        return ResponseEntity.ok().build();
+    }
+
 
 
 }

@@ -49,4 +49,20 @@ public class ProductServiceImpl implements ProductService {
 
 
     }
+
+    @Override
+    public void update(Long id, ProductRequest productRequest) {
+
+        Product existingProduct = productRepository.findById(id).orElseThrow(()-> new RuntimeException("Product id does not exist"));
+        Category existingCategory = categoryRepository.findById(productRequest.getCategoryId()).orElseThrow(()-> new RuntimeException("Category id does not exist"));
+        Brand existingBrand = brandRepository.findById(productRequest.getBrandId()).orElseThrow(()-> new RuntimeException("Brand id doesnt exist"));
+
+        existingProduct.setName(productRequest.getName());
+        existingProduct.setDescription(productRequest.getDescription());
+        existingProduct.setPrice(productRequest.getPrice());
+        existingProduct.setCategory(existingCategory);
+        existingProduct.setBrand(existingBrand);
+
+        productRepository.save(existingProduct);
+    }
 }
