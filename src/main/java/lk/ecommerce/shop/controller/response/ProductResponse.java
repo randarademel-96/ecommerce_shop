@@ -18,4 +18,6 @@ public class ProductResponse {
     private BigDecimal price;
     private Long categoryId;
     private String categoryName;
+    private Long brandId;
+    private String brandName;
 }
