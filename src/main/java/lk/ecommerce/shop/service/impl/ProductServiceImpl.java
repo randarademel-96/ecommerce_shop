@@ -11,6 +11,8 @@ import lk.ecommerce.shop.service.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class ProductServiceImpl implements ProductService {
@@ -33,5 +35,10 @@ public class ProductServiceImpl implements ProductService {
         product.setBrand(brand);
 
         productRepository.save(product);
+    }
+
+    @Override
+    public List<Product> getAll() {
+        return productRepository.findAll();
     }
 }
