@@ -49,4 +49,22 @@ public class UserController {
 
         return ResponseEntity.ok(userResponses);
     }
+
+    @GetMapping(value = "/{user-id}", headers = "x-api-version=v1")
+    public ResponseEntity<UserResponse> getById(@PathVariable("user-id")Long id){
+
+        User user = userService.findByid(id);
+
+        UserResponse userResponse = UserResponse.builder()
+                .id(user.getId())
+                .name(user.getName())
+                .address(user.getAddress())
+                .phone(user.getPhoneNo())
+                .gender(user.getGender())
+                .userRole(user.getUserRole())
+                .build();
+
+        return ResponseEntity.ok(userResponse);
+
+    }
 }

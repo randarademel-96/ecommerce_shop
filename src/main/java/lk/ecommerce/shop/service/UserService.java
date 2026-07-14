@@ -10,4 +10,6 @@ public interface UserService {
     void create(UserRequest userRequest);
 
     List<User> findAll();
+
+    User findByid(Long id);
 }
