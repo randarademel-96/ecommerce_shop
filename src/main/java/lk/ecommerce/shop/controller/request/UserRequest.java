@@ -1,6 +1,7 @@
 package lk.ecommerce.shop.controller.request;
 
 import lk.ecommerce.shop.model.Gender;
+import lk.ecommerce.shop.model.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,5 +19,5 @@ public class UserRequest {
     private Gender gender;
     private Integer phone;
     private String address;
-    private Role userRole;
+    private UserRole userRole;
 }
