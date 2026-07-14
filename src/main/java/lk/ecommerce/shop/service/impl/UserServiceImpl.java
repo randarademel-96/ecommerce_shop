@@ -7,6 +7,8 @@ import lk.ecommerce.shop.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class UserServiceImpl implements UserService {
@@ -24,5 +26,10 @@ public class UserServiceImpl implements UserService {
         user.setUserRole(userRequest.getUserRole());
 
         userRepository.save(user);
+    }
+
+    @Override
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 }

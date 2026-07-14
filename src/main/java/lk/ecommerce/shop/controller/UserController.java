@@ -2,11 +2,16 @@ package lk.ecommerce.shop.controller;
 
 import jakarta.validation.Valid;
 import lk.ecommerce.shop.controller.request.UserRequest;
+import lk.ecommerce.shop.controller.response.UserResponse;
+import lk.ecommerce.shop.model.User;
 import lk.ecommerce.shop.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -20,5 +25,28 @@ public class UserController {
         userService.create(userRequest);
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @GetMapping(headers = "x-api-version=v1")
+    public ResponseEntity<List<UserResponse>> findAll(){
+
+        List<User> users = userService.findAll();
+
+        List<UserResponse> userResponses = new ArrayList<>();
+
+        for(User user: users){
+
+            UserResponse response = UserResponse.builder()
+                    .id(user.getId())
+                    .name(user.getName())
+                    .address(user.getAddress())
+                    .gender(user.getGender())
+                    .phone(user.getPhoneNo())
+                    .userRole(user.getUserRole())
+                    .build();
+            userResponses.add(response);
+        }
+
+        return ResponseEntity.ok(userResponses);
     }
 }

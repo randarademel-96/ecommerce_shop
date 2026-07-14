@@ -15,6 +15,7 @@ import javax.management.relation.Role;
 @Builder
 public class UserResponse {
 
+    private Long id;
     private String name;
     private Gender gender;
     private Integer phone;
