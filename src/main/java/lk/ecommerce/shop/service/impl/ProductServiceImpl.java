@@ -9,7 +9,10 @@ import lk.ecommerce.shop.repository.CategoryRepository;
 import lk.ecommerce.shop.repository.ProductRepository;
 import lk.ecommerce.shop.service.ProductService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -67,4 +70,13 @@ public class ProductServiceImpl implements ProductService {
 
 
     }
+
+    @Override
+    public void deleteById(Long id) {
+        Product product = productRepository.findById(id).orElseThrow(()-> new RuntimeException("Product id does not exist"));
+
+        productRepository.delete(product);
+    }
+
+
 }

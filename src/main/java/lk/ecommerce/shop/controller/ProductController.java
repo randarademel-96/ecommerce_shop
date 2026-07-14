@@ -76,7 +76,13 @@ public class ProductController {
         return ResponseEntity.ok().build();
     }
 
+    @DeleteMapping(value = "/{product-id}", headers = "x-api-version=v1")
+    public ResponseEntity<Void> deleteById(@PathVariable("product-id")Long id){
 
+        productService.deleteById(id);
+
+        return ResponseEntity.noContent().build();
+    }
 
 
 
