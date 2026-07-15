@@ -53,7 +53,7 @@ public class UserController {
     @GetMapping(value = "/{user-id}", headers = "x-api-version=v1")
     public ResponseEntity<UserResponse> getById(@PathVariable("user-id")Long id){
 
-        User user = userService.findByid(id);
+        User user = userService.findById(id);
 
         UserResponse userResponse = UserResponse.builder()
                 .id(user.getId())
@@ -67,4 +67,12 @@ public class UserController {
         return ResponseEntity.ok(userResponse);
 
     }
+
+    @PutMapping(value = "/{user-id}", headers = "x-api-version=v1")
+    public ResponseEntity<Void> update(@PathVariable("user-id")Long id, @RequestBody UserRequest userRequest){
+
+        userService.update(id, userRequest);
+        return ResponseEntity.ok().build();
+    }
+
 }

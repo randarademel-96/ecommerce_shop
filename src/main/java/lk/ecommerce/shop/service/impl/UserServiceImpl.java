@@ -34,7 +34,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findByid(Long id) {
+    public User findById(Long id) {
         return userRepository.findById(id).orElseThrow(()-> new RuntimeException("User Id does not exist"));
+    }
+
+    @Override
+    public void update(Long id, UserRequest userRequest) {
+
+        User existingUser = userRepository.findById(id).orElseThrow(()-> new RuntimeException("User Id does not exist"));
+
+        existingUser.setName(userRequest.getName());
+        existingUser.setAddress(userRequest.getAddress());
+        existingUser.setGender(userRequest.getGender());
+        existingUser.setPhoneNo(userRequest.getPhone());
+
+        userRepository.save(existingUser);
     }
 }
