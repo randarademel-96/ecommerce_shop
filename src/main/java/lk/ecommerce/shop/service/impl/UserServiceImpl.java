@@ -1,6 +1,7 @@
 package lk.ecommerce.shop.service.impl;
 
 import lk.ecommerce.shop.controller.request.UserRequest;
+import lk.ecommerce.shop.model.Brand;
 import lk.ecommerce.shop.model.User;
 import lk.ecommerce.shop.repository.UserRepository;
 import lk.ecommerce.shop.service.UserService;
@@ -49,5 +50,13 @@ public class UserServiceImpl implements UserService {
         existingUser.setPhoneNo(userRequest.getPhone());
 
         userRepository.save(existingUser);
+    }
+
+    @Override
+    public void delete(Long id) {
+
+        User existingUser = userRepository.findById(id).orElseThrow(()-> new RuntimeException("User Id does not exist"));
+
+        userRepository.delete(existingUser);
     }
 }

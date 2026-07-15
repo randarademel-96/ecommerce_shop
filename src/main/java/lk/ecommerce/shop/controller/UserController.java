@@ -75,4 +75,12 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
+    @DeleteMapping(value = "/{user-id}", headers = "x-api-version=v1")
+    public ResponseEntity<Void> delete(@PathVariable("user-id")Long id){
+
+        userService.delete(id);
+
+        return ResponseEntity.noContent().build();
+
+    }
 }
